@@ -1,0 +1,33 @@
+body{
+    background-image: url("../assets/images/Star-Wars-LOTI.jpg");
+    color:#fff;
+}
+
+img{
+    margin:20px;
+    width:200px;
+    height:150px;
+    float: left;
+    border-width: thick;
+    border-radius: 25px;
+}
+.avatar{
+    margin:0px;
+    width:200px;
+    height:150px;
+    background-color: black;
+}
+#vader{
+    background-image: url("../assets/images/vader.jpg");
+}
+
+.jedi{
+    border:8px solid greenyellow;
+    
+
+}
+
+.darkside{
+    border:8px solid red;
+
+}
