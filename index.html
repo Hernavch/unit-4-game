@@ -88,7 +88,8 @@ $(document).ready(function() {
     };
 
 
-var chooseC= false
+var chooseC= false;
+var lostfight= false;
     // Choose
     var attacker = undefined;
     var enemy = undefined;
@@ -129,13 +130,18 @@ var chooseC= false
 
 
 
-        if(characters[enemy].hp <= 0){
+        if(characters[enemy].hp <= 0 && avatarHP>= 1 && lostfight === false){
             alert("Enemy Defeated!!  Choose another opponent");
+            $(".stats").innerHTML= "HP:"+ characters[enemy].hp;
+             
             $(".enemy").empty("");
-
+        }else{
+            alert("Attack Again")
         }
-        if(characters[attacker].hp <=0 ){
-            alert("You have been defeated");
+
+        if(avatarHP <= 0  ){
+            alert("You have been defeated")
+            loosefight=true;
         }
         // if(characters[enemy]===false){
 
