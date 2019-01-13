@@ -1,26 +1,52 @@
 body{
     background-image: url("../assets/images/Star-Wars-LOTI.jpg");
     color:#fff;
+    font-size: 18pt;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 img{
-    margin:20px;
     width:200px;
     height:150px;
-    float: left;
     border-width: thick;
     border-radius: 25px;
+    position: relative;
+    left:35px;
+
+   
+}
+label{
+    text-align: center;
+    padding:5px;
+    background-color:black;
+    width:100%;
+    margin-bottom:0px;
+    
+}
+.setup{
+    padding:20px;
+    background-color: black;
+    text-align: left;
+    width:500px;
+
+}
+/* .opponents{
+    display:flex;
+    flex:wrap; 
+    overflow: hidden;
+
+} */
+.green{
+    float:left;
+}
+.red{
+    float:left;
 }
 .avatar{
-    margin:0px;
-    width:200px;
-    height:150px;
-    background-color: black;
+    margin-top:0px;
+    margin-bottom:0px;
+    
 }
-#vader{
-    background-image: url("../assets/images/vader.jpg");
-}
-
 .jedi{
     border:8px solid greenyellow;
     
@@ -31,3 +57,17 @@ img{
     border:8px solid red;
 
 }
+.battlefield{
+    overflow: hidden;
+    position: relative;
+    right:10px;
+    text-align: center;
+
+}
+
+
+
+
+
+
+

@@ -4,33 +4,152 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="assets/style.css">
-    <title>Document</title>
+    <title>RPG-Game</title>
 </head>
 <body>
     <h1>Star Wars Fight</h1>
-   <button class="avatar" id="obiwan">
-        <img class="jedi" src="assets/images/Obi-wan.jpg" alt="Obi-wan">
-    </button>
-    <button class="avatar" id="luke">
-        <img class="jedi" src="assets/images/Luke.jpg" alt="Luke">
-    </button>
     
-       <button class="avatar darkside"  id="vader"> 
-           <!-- <img class="darkside" src="assets/images/vader.jpg" alt="Vader"> -->
-        </button>
-    
-    
-   
-       <button class="avatar darkside" id="kylo"> <img class="darkside" src="as/sets/images/kylo.jpg" alt="Kylo">
-        </button>
-    
-
-    <div class="you">
+    <div class="opponents row">
+       <div class="green col-6 row">
+         
+        <div class="avatar col-6 " id="obiwan">
+            <label class="identify">Obi-Wan</label>
+            <img class="image jedi" src="assets/images/Obi-wan.jpg" alt="Obi-wan">
+            <label class="stats"></label>
+            
+         </div>
+         <div class="avatar col-6" id="luke">
+                <label class="identify">Luke</label>
+            <img class="image jedi" src="assets/images/Luke.jpg" alt="Luke">
+            <label class="stats">HP:400</label>
+          </div>
+        </div>
+      <div class="red col-6 row">    
+        <div class="avatar col-6" id="vader">
+                <label class="identify ">Vader</label>
+            <img class="image darkside" src="assets/images/vader.jpg" alt="Vader">
+            <label class="stats"></label>
+        </div>
+        <div class="avatar col-6" id="kylo"> 
+                <label class="identify">Kylo-Ren</label>
+                <img class="image darkside" value="350" src="assets/images/kylo.jpg" alt="Kylo">
+                <label class="stats">HP:355</label>
+        </div>
+        </div>
     </div>
-    <button id="attack"></button>
-    <div class="enemy"></div>
+    
 
+    
+    <div class="battlefield row">
+        <div class="character col-5">
+            <h2 class="setup">Choose Character</h2>
+        </div>
+        <br>
+        <button id="attack" type="button" class="btn btn-danger col-1">Attack</button>
+        <br>
+        <br>
+        <div class="enemy col-6">
+            <h2 class="setup">Choose Opponent</h2>
+        </div>
+    </div>
+
+
+
+<script type="text/javascript">
+$(document).ready(function() {
+    var audio = new Audio("lightsaber.mp3")
+    var audio2= new Audio("fight.mp3")
+
+    var characters = {
+        obiwan : {
+           hp: 395,
+           apower:75,
+           capower:95,
+        },
+
+        luke: {
+            hp: 450,
+            apower:75,
+            capower:100
+        },
+        kylo: {
+            hp: 355,
+            apower:75,
+            capower:75,
+        },
+        vader: {
+            hp: 425,
+            apower:75,
+            capower:150
+        }
+    };
+
+
+var chooseC= false
+    // Choose
+    var attacker = undefined;
+    var enemy = undefined;
+    
+    $(".avatar").on("click", function(){
+        audio.play();
+        if (chooseC== false){      
+            $(".character").html($(this).html());
+            $(this).detach();
+            chooseC = true;
+            attacker = $(this).attr('id');
+        }else{
+            $(".enemy").html($(this).html());
+            $(this).detach();
+            enemy = $(this).attr('id');
+        }
+    });
+
+    $("#attack").on("click", function(){
+        audio2.play();
+        var avatarHP= characters[attacker].hp;
+        var enemyHP=characters[enemy].hp;
+
+        var attackPwr=characters[attacker].apower = characters[attacker].apower + 75
+        characters[attacker].hp = characters[attacker].hp - characters[enemy].capower
+        /// Change in character stats
+
+        $('#'+ attacker + '.stats').text("HP:" + characters[attacker].hp);
+        $(".stats").innerHTML= "HP:" + avatarHP;
+        console.log(characters[attacker]);
+
+        /// Change in Enemy stats
+
+        var damaged= characters[enemy].hp = characters[enemy].hp - characters[attacker].apower;
+        
+        $('#'+enemy + '.stats').text("HP:" +characters[enemy].hp);
+        console.log(characters[enemy]);
+
+
+
+        if(characters[enemy].hp <= 0){
+            alert("Enemy Defeated!!  Choose another opponent");
+            $(".enemy").empty("");
+
+        }
+        if(characters[attacker].hp <=0 ){
+            alert("You have been defeated");
+        }
+        // if(characters[enemy]===false){
+
+        // }
+    })
+
+    
+
+    
+});
+
+
+
+</script>
     
 </body>
 </html>
